@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DaFaFlare | Blacklisted</title>
+    <link rel="icon" href="https://i.ibb.co.com/VJTL6Zz/favicon.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.8), rgba(50, 50, 50, 1));
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+            animation: noise 1s infinite alternate;
+        }
+
+        @keyframes noise {
+            0% {
+                filter: contrast(150%) brightness(50%);
+            }
+
+            100% {
+                filter: contrast(200%) brightness(20%);
+            }
+        }
+
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.85);
+            border-radius: 15px;
+            padding: 40px 60px;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.9);
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: flicker 0.5s linear infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% {
+                box-shadow: 0 0 30px rgba(255, 0, 0, 0.9);
+            }
+
+            100% {
+                box-shadow: 0 0 80px rgba(255, 0, 0, 0.8), 0 0 200px rgba(255, 0, 0, 0.4);
+            }
+        }
+
+        .error-code {
+            font-size: 150px;
+            font-weight: bold;
+            color: #ff0000;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 12px;
+            text-shadow: 0px 0px 20px rgba(255, 0, 0, 1), 0px 0px 40px rgba(255, 0, 0, 0.6);
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-12px);
+            }
+
+            50% {
+                transform: translateX(12px);
+            }
+
+            75% {
+                transform: translateX(-12px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .error-message {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #f3f3f3;
+            font-weight: bold;
+            text-shadow: 0 0 25px rgba(255, 0, 0, 0.9);
+        }
+
+        .error-description {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #d1d1d1;
+            font-style: italic;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+        }
+
+        .suggestions {
+            font-size: 17px;
+            color: #b0b0b0;
+            margin-top: 20px;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .suggestions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .suggestions li {
+            margin: 10px 0;
+            font-size: 16.4px;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+        }
+
+        .back-link {
+            padding: 16px 26px;
+            background-color: #ff0000;
+            color: #fff;
+            text-decoration: none;
+            font-size: 22px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .back-link:hover {
+            background-color: #cc0000;
+            transform: translateY(-2px);
+        }
+
+        .warning {
+            font-size: 24px;
+            color: #e00000;
+            font-weight: bold;
+            margin-top: 30px;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+        }
+
+        @media (max-width: 600px) {
+            .error-container {
+                padding: 30px 40px;
+            }
+
+            .error-code {
+                font-size: 120px;
+            }
+
+            .error-message {
+                font-size: 26px;
+            }
+
+            .error-description {
+                font-size: 16px;
+            }
+
+            .back-link {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="error-container">
+        <div class="error-code">500</div>
+        <div class="error-message">Internal Server Error</div>
+        <div class="error-description">
+            Internal chaos has occured. The server is no longer responding. Please stand by.
+        </div>
+    </div>
+
+</body>
+
+</html>
