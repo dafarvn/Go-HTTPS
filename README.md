@@ -26,3 +26,15 @@ This project is distributed under MIT License. For detailed terms, please refer 
    go get https://github.com/dchest/captcha
    ```
 3. Set server information in [main.go](https://github.com/dafarvn/Go-HTTPS/blob/main/main.go#L163)
+4. Don't forget to input your cache
+5. Power up Server
+   ```
+   go run main.go
+   ```
+
+## ❗ | Information
+Next features, will be updated regularly on GitHub. For further feature requests or protection, please contact Discord or Whatsapp
+
+<a href="https://github.com/dafarvn"><img alt="Link to my GitHub" src="https://img.shields.io/github/followers/dafarvn?style=for-the-badge&color=181717&logo=github&logoColor=181717&label=@dafarvn" height="22px"></a>
+<a href="https://discord.com/channels/@me/1136638093101891665"><img alt="link to my Discord" src="https://img.shields.io/static/v1?label&message=dfarvn&color=000000&style=for-the-badge&logo=discord" height="22px"/></a>
+<a href="https://wa.me/+6285175265241"><img alt="Link to my Whatsapp" src="https://img.shields.io/static/v1?label&message=DaFa Rizki Revansyah&color=000000&style=for-the-badge&logo=whatsapp" height="22px"/></a>
