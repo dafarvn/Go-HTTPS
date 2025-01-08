@@ -35,6 +35,8 @@ This project is distributed under MIT License. For detailed terms, please refer 
    ```
    go run main.go
    ```
+   or Download Release Application
+   
 
 ## ❗ | Information
 Next features, will be updated regularly on GitHub. For further feature requests or protection, please contact Discord or Whatsapp
