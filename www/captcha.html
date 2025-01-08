@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Captcha Verification</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px;
+            background-color: #111;
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        header .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff6a00;
+            letter-spacing: 2px;
+            text-shadow: 0px 0px 10px rgba(255, 106, 0, 0.8);
+        }
+
+        section {
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00a2ff, #ff003c);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0px 0px 10px rgba(248, 12, 12, 0.5);
+        }
+
+        p {
+            font-size: 20px;
+            color: #ddd;
+            margin-bottom: 30px;
+            text-shadow: 0px 0px 10px rgba(248, 12, 12, 0.5);
+        }
+
+        img {
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 2px solid #00a2ff;
+            border-radius: 5px;
+            background-color: #111;
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 20px;
+            text-align: center;
+            outline: none;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #00a2ff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 5px 10px rgba(255, 106, 0, 0.3);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #ff003c;
+            transform: translateY(-3px);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        footer {
+            padding: 10px;
+            background-color: #111;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            color: #bdbdbd;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo-container">
+            <div class="logo">DaFaFlare</div>
+        </div>
+    </header>
+
+    <section>
+        <h1>Access Restricted</h1>
+        <p>Please complete the Captcha to proceed:</p>
+        <img src="{{CAPTCHA_URL}}" alt="Captcha">
+        <form method="GET" action="/">
+            <input type="hidden" name="captcha_id" value="{{CAPTCHA_ID}}">
+            <input type="text" name="captcha" placeholder="Enter Captcha" required>
+            <button type="submit">Verify</button>
+        </form>
+    </section>
+
+    <footer>
+        (C) 2019-2025 DaFaFlare. All rights reserved.
+    </footer>
+
+</body>
+
+</html>
