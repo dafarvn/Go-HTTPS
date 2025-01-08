@@ -3,6 +3,22 @@
 
 # DaFaFlare - Go HTTPS For GTPS
 
-DaFaFlare is a powerful DDoS Protection System built for Growtopia Private Server. It provides Intens Blacklist IP, Flexible Rate Limiter, User-Agent Filter, Captcha System
+DaFaFlare is a powerful DDoS Protection System built for Growtopia Private Server. It provides Intens Blacklist IP, Flexible Rate Limiter, User-Agent Filter, and Captcha System
 
 ## 🧾 | License
+This project is distributed under MIT License. For detailed terms, please refer to the [LICENSE](LICENSE)
+
+## ✅ | Features
+- Intens IP Blacklist
+- Flexible Rate Limiting
+- User-Agent Filter
+- Captcha System
+- Support Cache (C ITEMS)
+- Customize Web Design
+
+## ❓ | How to Setup
+1. Clone this Repository:
+   ```
+   git clone https://github.com/dafarvn/Go-HTTPS.git
+   ```
+2. Install 
