@@ -3,5 +3,6 @@
 
 # DaFaFlare - Go HTTPS For GTPS
 
-Why DaFaFlare?
-DaFaFlare is a powerful DDoS Protection System built for Growtopia Private Server.\n It provides Blacklist IP, Rate Limiter
+DaFaFlare is a powerful DDoS Protection System built for Growtopia Private Server. It provides Intens Blacklist IP, Flexible Rate Limiter, User-Agent Filter, Captcha System
+
+## 🧾 | License
