@@ -21,12 +21,16 @@ This project is distributed under MIT License. For detailed terms, please refer 
    ```
    git clone https://github.com/dafarvn/Go-HTTPS.git
    ```
+   
 2. Install required Captcha System by [dchest](https://github.com/dchest)
    ```
    go get https://github.com/dchest/captcha
    ```
+   
 3. Set server information in [main.go](https://github.com/dafarvn/Go-HTTPS/blob/main/main.go#L163)
+   
 4. Don't forget to input your cache
+   
 5. Power up Server
    ```
    go run main.go
