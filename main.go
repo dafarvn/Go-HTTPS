@@ -7,13 +7,11 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"os/exec"
 	"strings"
 	"sync"
 	"time"
 	"syscall"
 	"os/signal"
-	"unsafe"
 
 	"github.com/dchest/captcha"
 )
@@ -31,32 +29,6 @@ func getTLSConfig() (*tls.Config, error) {
 func logWithTime(level, message string) {
 	currentTime := time.Now().Format("2006-01-02 15:04:05")
 	fmt.Printf("[%s | %s]: %s\n", currentTime, level, message)
-}
-
-func SetTitle(title string) (int, error) {
-	handle, err := syscall.LoadLibrary("Kernel32.dll")
-	if err != nil {
-		return 0, err
-	}
-	defer syscall.FreeLibrary(handle)
-
-	proc, err := syscall.GetProcAddress(handle, "SetConsoleTitleW")
-	if err != nil {
-		return 0, err
-	}
-
-	r, _, err := syscall.Syscall(proc, 1, uintptr(unsafe.Pointer(syscall.StringToUTF16Ptr(title))), 0, 0)
-	return int(r), err
-}
-
-func setCmdSizeAndClear(width, height int) {
-    command := fmt.Sprintf("mode con: cols=%d lines=%d", width, height)
-    cmd := exec.Command("cmd", "/C", command)
-    
-    err := cmd.Run()
-    if err != nil {
-        fmt.Println("Error:", err)
-    }
 }
 
 var blacklist = make(map[string]int64)
@@ -199,7 +171,7 @@ func handleCacheRequests(w http.ResponseWriter, r *http.Request) {
 
     path := "." + r.URL.Path
 
-	logWithTime("INFO", fmt.Sprintf("Cache Downloading file: %s", r.URL.Path))
+	logWithTime("INFO", fmt.Sprintf("Cache Downloading file: %s | from IP %s", r.URL.Path, r.RemoteAddr))
 
     stat, err := os.Stat(path)
     if err == nil {
@@ -261,9 +233,6 @@ func handleCacheRequests(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	SetTitle("DaFaFlare")
-	setCmdSizeAndClear(102, 30)
-
 	tlsConfig, err := getTLSConfig()
 	if err != nil {
 		log.Fatalf("Gagal memuat sertifikat: %v", err)
@@ -333,7 +302,7 @@ func main() {
 	muxWithLimiter := rateLimiter(mux)
 
     sigs := make(chan os.Signal, 1)
-    signal.Notify(sigs, syscall.SIGKILL, syscall.SIGINT)
+    signal.Notify(sigs, syscall.SIGKILL, syscall.SIGTERM)
 
     go func() {
         for sig := range sigs {
