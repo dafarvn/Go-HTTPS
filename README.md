@@ -27,7 +27,7 @@ This project is distributed under MIT License. For detailed terms, please refer 
    go get https://github.com/dchest/captcha
    ```
    
-3. Set server information in [server_data.php](https://github.com/dafarvn/Go-HTTPS/blob/main/www/growtopia/server_data.php)
+3. Set server requirements in [server_data.php](https://github.com/dafarvn/Go-HTTPS/blob/main/www/growtopia/server_data.php)
    
 4. Don't forget to input your cache
    
