@@ -27,7 +27,7 @@ This project is distributed under MIT License. For detailed terms, please refer 
    go get https://github.com/dchest/captcha
    ```
    
-3. Set server information in [main.go](https://github.com/dafarvn/Go-HTTPS/blob/main/main.go#L163)
+3. Set server information in [server_data.php](https://github.com/dafarvn/Go-HTTPS/blob/main/main.go#L163)
    
 4. Don't forget to input your cache
    
