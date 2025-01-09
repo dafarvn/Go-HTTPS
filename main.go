@@ -7,10 +7,12 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"os/exec"
 	"strings"
 	"sync"
 	"time"
 	"syscall"
+	"os/signal"
 	"unsafe"
 
 	"github.com/dchest/captcha"
@@ -45,6 +47,16 @@ func SetTitle(title string) (int, error) {
 
 	r, _, err := syscall.Syscall(proc, 1, uintptr(unsafe.Pointer(syscall.StringToUTF16Ptr(title))), 0, 0)
 	return int(r), err
+}
+
+func setCmdSizeAndClear(width, height int) {
+    command := fmt.Sprintf("mode con: cols=%d lines=%d", width, height)
+    cmd := exec.Command("cmd", "/C", command)
+    
+    err := cmd.Run()
+    if err != nil {
+        fmt.Println("Error:", err)
+    }
 }
 
 var blacklist = make(map[string]int64)
@@ -160,26 +172,20 @@ func serverDataHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	packet := `server|YOURIP
-port|17091
-loginurl|LOGINURL
-type|1
-#maint| MetaGrow Server will be undergoing Maintenance in a few moments. -- DaFaFlare
-
-beta_server|127.0.0.1
-beta_port|17091
-
-beta_type|1
-meta|DaFaFlare
-RTENDMARKERBS1001`
-
+	filePath := "./www/growtopia/server_data.php"
 	if r.Method == "POST" {
-		w.Header().Set("Content-Type", "text/plain")
-		w.Write([]byte(packet))
-	} else {
-		w.WriteHeader(http.StatusMethodNotAllowed)
-		http.ServeFile(w, r, "./www/err/405.html")
-	}
+        data, err := os.ReadFile(filePath)
+        if err != nil {
+            w.WriteHeader(http.StatusInternalServerError)
+            http.ServeFile(w, r, "./www/err/500.html")
+            return
+        }
+        w.Header().Set("Content-Type", "text/plain")
+        w.Write(data)
+    } else {
+        w.WriteHeader(http.StatusMethodNotAllowed)
+        http.ServeFile(w, r, "./www/err/405.html")
+    }
 }
 
 func handleCacheRequests(w http.ResponseWriter, r *http.Request) {
@@ -192,6 +198,8 @@ func handleCacheRequests(w http.ResponseWriter, r *http.Request) {
     }
 
     path := "." + r.URL.Path
+
+	logWithTime("INFO", fmt.Sprintf("Cache Downloading file: %s", r.URL.Path))
 
     stat, err := os.Stat(path)
     if err == nil {
@@ -254,6 +262,7 @@ func handleCacheRequests(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	SetTitle("DaFaFlare")
+	setCmdSizeAndClear(102, 30)
 
 	tlsConfig, err := getTLSConfig()
 	if err != nil {
@@ -322,6 +331,18 @@ func main() {
 	mux.HandleFunc("/cache/", handleCacheRequests)
 
 	muxWithLimiter := rateLimiter(mux)
+
+    sigs := make(chan os.Signal, 1)
+    signal.Notify(sigs, syscall.SIGKILL, syscall.SIGINT)
+
+    go func() {
+        for sig := range sigs {
+            if sig == syscall.SIGKILL {
+                continue
+            }
+            fmt.Printf("Received signal: %s\n", sig)
+        }
+    }()
 
 	server := &http.Server{
 		Addr:      ":443",
