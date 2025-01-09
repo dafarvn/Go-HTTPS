@@ -16,6 +16,9 @@ This project is distributed under MIT License. For detailed terms, please refer 
 - Support Cache (C ITEMS)
 - Customize Web Design
 
+## 💾 | Download Realease
+This release will be updated at any time, stay tuned at [Realease](https://github.com/dafarvn/Go-HTTPS/releases/tag/go-https)
+
 ## ❓ | How to Setup
 1. Clone this Repository:
    ```
