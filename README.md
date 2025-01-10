@@ -38,7 +38,7 @@ This release will be updated at any time, stay tuned at [Realease](https://githu
    ```
    go run main.go
    ```
-   or Download Release Application
+   or Download [Release](https://github.com/dafarvn/Go-HTTPS?tab=readme-ov-file#--download-realease) Application
    
 
 ## ❗ | Information
