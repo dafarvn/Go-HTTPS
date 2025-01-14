@@ -22,7 +22,7 @@ This release will be updated at any time, stay tuned at [Realease](https://githu
 ## ❓ | How to Setup
 1. Clone this Repository:
    ```
-   git clone https://github.com/dafarvn/GO-HTTPS.git
+   git clone https://github.com/dafarvn/Go-HTTPS.git
    ```
    
 2. Install required Captcha System by [dchest](https://github.com/dchest)
