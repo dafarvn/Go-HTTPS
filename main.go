@@ -132,6 +132,42 @@ func rateLimiter(next http.Handler) http.Handler {
 	})
 }
 
+var blockedUserAgents = []string{
+	"python-requests",
+	"python",
+	"Python-urllib",
+	"node-fetch",
+	"axios",
+	"Go-http-client",
+	"Mozilla",
+	"Chrome",
+	"Safari",
+	"Firefox",
+	"Edge",
+	"Opera",
+	"Thunder Client",
+	"Postman",
+	"insomnia",
+	"curl",
+	"Wget",
+	"HttpClient",
+	"okhttp",
+}
+
+func userAgentBlocker(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		userAgent := r.Header.Get("User-Agent")
+		for _, blocked := range blockedUserAgents {
+			if strings.Contains(strings.ToLower(userAgent), strings.ToLower(blocked)) {
+                w.WriteHeader(http.StatusForbidden)
+                http.ServeFile(w, r, "./www/err/403.html")
+				return
+			}
+		}
+		next.ServeHTTP(w, r)
+	})
+}
+
 func serverDataHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Server", "DaFaFlare")
 
@@ -295,7 +331,7 @@ func main() {
 		http.ServeFile(w, r, "./www/err/404.html")
 	})
 
-	mux.HandleFunc("/growtopia/server_data.php", serverDataHandler)
+	mux.Handle("/growtopia/server_data.php", userAgentBlocker(http.HandlerFunc(serverDataHandler)))
 
 	mux.HandleFunc("/cache/", handleCacheRequests)
 
